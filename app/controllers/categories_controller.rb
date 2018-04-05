@@ -63,10 +63,8 @@ class CategoriesController < ApplicationController
   end
 
   def toggle_is_active
-    status_change = @category.is_active? ? false : true
-    @category.update(:is_active => status_change)
+    @category.toggle!(:is_active)
     respond_to do |format|
-      format.html { redirect_to(@category) }
       format.js
     end
   end
