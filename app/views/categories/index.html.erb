@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Categories</h1>
+
+<table class="table-pretty">
+  <thead>
+    <tr>
+      <th>Category name</th>
+      <th colspan="3"></th>
+      <th>Status</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @categories.each do |category| %>
+      <tr>
+        <td><%= category.category_name %></td>
+        <td><%= link_to 'Show', category %></td>
+        <td><%= link_to 'Edit', edit_category_path(category) %></td>
+        <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% status = category.is_active? ? 'Active' : 'Inactive' %>
+        <td id="<%= category.id %>" ><button class="button_<%= status %>"><%= link_to status, toggle_active_path(:id => category.id), :method => :post, :remote => true %></button></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Category', new_category_path %>
+
+<br>
+<br>

@@ -1,0 +1,2 @@
+<% status = @category.is_active? ? 'Active' : 'Inactive' %>
+<button class="button_<%= status %>"><%= link_to status, toggle_active_path(:id => @category.id), :method => :post, :remote => true %></button>
